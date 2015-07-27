@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>Joystick</title>
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<div id="loading" class="loading">
+	Loading...
+</div>
+<div id="home" class="home">
+	<input id="player_id" type="text" placeholder="Player">
+	<input id="session_id" type="text" placeholder="ID">
+	<button id="button_go">GO</button>
+</div>
+<div id="joystick" class="joystick">
+	<div id="red" class="red"></div>
+	<div id="blue" class="blue"></div>
+	<div id="green" class="green"></div>
+	<div id="black" class="black"></div>
+</div>
+<script type="text/javascript" src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="../src/joystick.js"></script>
+</body>
+</html>
