@@ -23,7 +23,12 @@ var Joystick = function() {
 
 	// Sockets Methods
 	var joinRoom = function(id, player) {
-		socket.emit('joinRoom', {room: id, player: player});
+		socket.emit( 'joinRoom', { 
+            roomId: id,
+            userId: player,
+            isPlayer: true,
+            playerName: player
+        });
 	};
 
 	var fireEvents = function(id) {
