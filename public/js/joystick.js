@@ -32,7 +32,7 @@ var Joystick = function() {
 	};
 
 	var fireEvents = function(id) {
-		socket.emit('game', id);
+		socket.emit('joystick', id);
 	};
 
 	// Events
