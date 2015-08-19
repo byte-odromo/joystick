@@ -68,3 +68,8 @@ body {
 .black {
 	background: black;
 }
+
+#finish.home {
+	color: white;
+	background-color: black;
+}

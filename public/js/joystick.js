@@ -20,6 +20,7 @@ var Joystick = function() {
 	var $session_id = document.querySelector('#home #session_id');
 	var $joystick = document.querySelector('#joystick');
 	var $buttons = document.querySelectorAll('#joystick div');
+	var $finish = document.querySelector('#finish');
 
 	// Sockets Methods
 	var joinRoom = function(id, player) {
@@ -31,15 +32,23 @@ var Joystick = function() {
         });
 	};
 
-	var fireEvents = function(id) {
-		socket.emit('joystick', id);
+	var fireEvents = function( id ) {
+		socket.emit('joystick', { roomId: $session_id.value, button: id });
 	};
 
 	// Events
 	$homeGo.onclick = function() {
 		joinRoom($session_id.value, $player_id.value);
 		$home.hide();
-		$joystick.show();
+		$loading.show();
+		socket.on('gameReady', function( data ){
+			$loading.hide();
+			$joystick.show();
+		});
+		socket.on('raceFinished', function(){
+			$joystick.hide();
+			$finish.show();
+		})
 	};
 
 	for (var i = $buttons.length - 1; i >= 0; i--) {
@@ -50,6 +59,7 @@ var Joystick = function() {
 
 	// Init
 	exports.init = function() {
+		$session_id.value = window.location.href.split( '/' ).pop();
 		// Show home
 		$home.show();
 		socket = io();
